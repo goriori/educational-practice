@@ -3,17 +3,18 @@ import { useRoute } from 'vue-router'
 import VLoader from '@/components/VLoader.vue'
 import { useStateStore } from '@/store/stateStore'
 import Header from './components/globals/header/Header.vue'
-import Footer from "./components/globals/footer/Footer.vue";
-import VLoadPage from "@/components/VLoadPage.vue";
+import Footer from './components/globals/footer/Footer.vue'
+import VLoadPage from '@/components/VLoadPage.vue'
 
 const route = useRoute()
 const stateStore = useStateStore()
-
 </script>
 
 <template>
   <main class="main">
-    <VLoadPage v-if="false" />
+    <Transition>
+      <VLoadPage v-if="false" />
+    </Transition>
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <Header />
@@ -22,7 +23,7 @@ const stateStore = useStateStore()
             <component :is="Component" :key="route.fullPath"></component>
           </suspense>
         </transition>
-        <Footer/>
+        <Footer />
       </template>
     </RouterView>
     <VLoader v-if="stateStore.isLoading" />

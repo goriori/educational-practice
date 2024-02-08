@@ -1,14 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-const HomeView = () => import('@/pages/main/HomeView.vue')
-
+const Main = () => import('@/pages/main/Main.vue')
+const Services = () => import('@/pages/services/Services.vue')
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      props: {
+        title: 'Главная',
+      },
+      component: Main,
+    },
+    {
+      path: '/services',
+      name: 'services',
+      props: {
+        title: 'Услуги',
+      },
+      component: Services,
     },
   ],
 })

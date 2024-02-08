@@ -16,10 +16,14 @@
     z-index: 100;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &-content {
+    width: 100%;
   }
 }
 </style>

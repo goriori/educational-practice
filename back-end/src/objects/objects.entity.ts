@@ -6,5 +6,11 @@ export class Objects extends Model {
   name: string;
 
   @Column
+  image: string;
+
+  @Column
+  description: string;
+
+  @Column
   price: number;
 }

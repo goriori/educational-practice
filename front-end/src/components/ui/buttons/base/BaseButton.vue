@@ -34,26 +34,26 @@ const props = defineProps({
       :class="[
         'btn',
         {
-          'btn-small': props.size === 'small',
-          'btn-medium': props.size === 'medium',
-          'btn-big': props.size === 'big',
+          'btn-small': size === 'small',
+          'btn-medium': size === 'medium',
+          'btn-big': size === 'big',
         },
         {
-          'btn-primary': props.color === 'primary',
-          'btn-secondary': props.color === 'secondary',
+          'btn-primary': color === 'primary',
+          'btn-secondary': color === 'secondary',
         },
         {
-          'btn-shadow-primary': props.shadow === 'primary',
+          'btn-shadow-primary': shadow === 'primary',
         },
         {
-          'btn-rounded-small': props.rounded === 'small',
-          'btn-rounded-full': props.rounded === 'full',
+          'btn-rounded-small': rounded === 'small',
+          'btn-rounded-full': rounded === 'full',
         },
         {
-          'btn-outlined': props.outline,
+          'btn-outlined': outline,
         },
         {
-          'btn-active': props.isActive,
+          'btn-active': isActive,
         },
       ]"
     >
@@ -135,7 +135,8 @@ const props = defineProps({
   }
 
   &-secondary {
-    background: #3e4c9d;
+    color: $white;
+    background: $secondary;
   }
 
   &-balance-primary {

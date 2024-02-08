@@ -1,12 +1,11 @@
 <script setup>
-const websiteTitle = window.WEBSITE_NAME
 </script>
 
 <template>
   <footer class="footer">
     <div class="footer__container container">
       <div class="footer__title">
-        <h2>{{ websiteTitle }}</h2>
+        <h2>© Copyright 2022 by Ranu Hasan</h2>
       </div>
     </div>
   </footer>
@@ -19,11 +18,13 @@ const websiteTitle = window.WEBSITE_NAME
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $background;
+  background: $primary;
   padding: 20px;
 
   &__title {
-    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
   }
 }
 </style>
