@@ -4,6 +4,7 @@ import router from './router'
 import App from './App.vue'
 import VClickOutside from '@/directives/vClickOutside'
 import vRipple from '@/directives/vRipple'
+
 import '@/assets/scss/main.scss'
 
 const app = createApp(App)

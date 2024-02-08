@@ -42,6 +42,12 @@ const websiteTitle = window.WEBSITE_NAME
 @import '@/assets/scss/variables';
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header {
   display: flex;
   width: 100dvw;
   justify-content: center;
@@ -49,6 +55,9 @@ const websiteTitle = window.WEBSITE_NAME
   padding: 20px;
   background: $background;
   color: #fff;
+  -webkit-box-shadow: 0 10px 15px 0 rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0 10px 15px 0 rgba(34, 60, 80, 0.2);
+  box-shadow: 0 10px 15px 0 rgba(34, 60, 80, 0.2);
 
   &__container {
     display: flex;

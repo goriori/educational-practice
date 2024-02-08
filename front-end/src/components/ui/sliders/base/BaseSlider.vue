@@ -8,10 +8,7 @@ const props = defineProps({
     default: [],
   },
 })
-const onProgress = (e) => {
-  const [swiper, progress] = e.detail
-  console.log(progress)
-}
+
 </script>
 
 <template>
@@ -21,7 +18,6 @@ const onProgress = (e) => {
     :pagination="{
       hideOnClick: true,
     }"
-    @swiperprogress="onProgress"
   >
     <swiper-slide v-for="image in images" :key="image">
       <img :src="image" alt="" />
