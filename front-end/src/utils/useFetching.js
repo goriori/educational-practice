@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useStateStore } from '@/store/stateStore'
+import { useStateStore } from '@/store/state/stateStore.js'
 
 export const useFetching = (cb) => {
   const stateStore = useStateStore()

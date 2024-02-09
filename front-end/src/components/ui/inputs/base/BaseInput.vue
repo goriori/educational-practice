@@ -1,5 +1,9 @@
 <script setup>
 const props = defineProps({
+  modelValue: {
+    type: [String, Number],
+    default: '',
+  },
   type: {
     type: String,
     default: 'text',
@@ -17,12 +21,18 @@ const props = defineProps({
     default: 'full',
   },
 })
+const emits = defineEmits(['update:modelValue'])
+const onChange = (e) => {
+  emits('update:modelValue', e.target.value)
+}
 </script>
 
 <template>
   <input
     :type="type"
+    :value="modelValue"
     :placeholder="placeholder"
+    @input="onChange"
     :class="[
       'base__input',
       {
@@ -39,13 +49,13 @@ const props = defineProps({
 input {
   display: block;
   animation-delay: 0.2s;
-
 }
 
 .base__input {
   width: 100%;
   height: 100%;
   border-color: black;
+
   &-default {
     padding: 20px;
   }

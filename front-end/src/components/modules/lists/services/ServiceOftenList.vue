@@ -4,24 +4,18 @@ import ServicesFilter from '@/components/modules/lists/modules/filters/ServicesF
 import ServiceSearch from '@/components/modules/lists/modules/search/ServiceSearch.vue'
 import ApplicationModule from '@/components/modules/application/ApplicationModule.vue'
 import { useObjectsStore } from '@/store/objects/objectsStore.js'
-import ObjectPopupModule from '@/components/modules/popups/object/ObjectPopupModule.vue'
 
 const objectsStore = useObjectsStore()
 const onTarget = (object) => {
-  objectsStore.targetObject.value = object
+  objectsStore.targetObject = object
 }
 </script>
 
 <template>
   <div class="list">
-    <div class="list-filters">
-      <ServiceSearch />
-      <ServicesFilter />
-    </div>
-
     <div class="list-service">
       <BaseCard
-        v-for="item in objectsStore.objects"
+        v-for="item in objectsStore.objects.slice(0, 8)"
         :key="item"
         rounded
         :image="item.image"
@@ -49,14 +43,6 @@ const onTarget = (object) => {
   flex-direction: column;
   justify-content: center;
   gap: $gap;
-
-  &-filters {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    max-height: 100px;
-    gap: $gap;
-  }
 
   &-service {
     display: grid;

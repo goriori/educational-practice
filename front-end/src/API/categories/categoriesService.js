@@ -1,15 +1,10 @@
-
 import { axiosInstance } from '@/utils/axios/axios'
 
-export default class PostService {
-  static async getData() {
+export default class CategoriesService {
+  static async getCategories() {
     try {
       const response = await axiosInstance({
-        url: '/todos/2',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+        url: '/category',
         method: 'GET',
       })
       return response.data

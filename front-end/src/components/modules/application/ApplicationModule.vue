@@ -6,6 +6,9 @@ import { ref } from 'vue'
 const isActive = ref(false)
 const onOpenPopup = () => (isActive.value = true)
 const onClosePopup = () => (isActive.value = false)
+const onSendApplication = (applicationForm) => {
+  console.log(applicationForm)
+}
 </script>
 
 <template>
@@ -22,7 +25,11 @@ const onClosePopup = () => (isActive.value = false)
     </div>
     <Teleport to="body">
       <Transition name="fade">
-        <ApplicationPopup @close="onClosePopup" v-if="isActive" />
+        <ApplicationPopup
+          @close="onClosePopup"
+          @sendApplicationForm="onSendApplication"
+          v-if="isActive"
+        />
       </Transition>
     </Teleport>
   </div>

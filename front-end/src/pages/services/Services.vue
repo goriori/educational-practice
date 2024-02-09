@@ -1,7 +1,8 @@
 <script setup>
-import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
-import BaseCard from '@/components/ui/cards/base/BaseCard.vue'
 import ServicesList from '@/components/modules/lists/services/ServicesList.vue'
+import ServiceSlider from '@/components/ui/sliders/services/ServiceSlider.vue'
+import ServiceOftenList from '@/components/modules/lists/services/ServiceOftenList.vue'
+import ObjectPopupModule from '@/components/modules/popups/object/ObjectPopupModule.vue'
 </script>
 
 <template>
@@ -10,16 +11,35 @@ import ServicesList from '@/components/modules/lists/services/ServicesList.vue'
       <div class="page__title">
         <h1>Gleaming Clean</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-          accusantium beatae dicta dolore ducimus earum, error impedit ipsum
-          iure laboriosam molestiae nam nesciunt nostrum, pariatur recusandae
-          saepe sint vel velit? Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Accusamus accusantium beatae dicta dolore ducimus
-          earum, error impedit ipsum iure laboriosam molestiae nam nesciunt
-          nostrum, pariatur recusandae saepe sint vel velit?
+          Мы рады приветствовать вас и предложить наши профессиональные услуги в
+          области химической чистки мебели, диванов и других ценных вещей. Наша
+          компания специализируется на не только на предоставлении
+          высококачественных услуг, но и на создании надежного и комфортного
+          опыта для каждого нашего клиента. Чистота и блеск вашей мебели - наша
+          страсть и главная цель. Мы используем передовые технологии и
+          экологически чистые химикаты, чтобы обеспечить максимальную
+          эффективность и сохранить красоту и долговечность ваших ценностей.
         </p>
       </div>
-      <ServicesList />
+      <div class="page__modules">
+        <div class="module-object">
+          <Teleport to="body">
+            <Transition name="fade">
+              <ObjectPopupModule v-if="false" />
+            </Transition>
+          </Teleport>
+        </div>
+        <div class="module-often">
+          <h2>Часто покупаемые услуги</h2>
+          <ServiceOftenList />
+        </div>
+        <div class="module-slider">
+          <ServiceSlider />
+        </div>
+        <div class="module-list">
+          <ServicesList />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,7 +75,7 @@ import ServicesList from '@/components/modules/lists/services/ServicesList.vue'
     flex-direction: column;
     gap: 20px;
     color: $white;
-    max-width: 800px;
+    max-width: 1000px;
 
     h1 {
       color: #050931;
@@ -70,6 +90,26 @@ import ServicesList from '@/components/modules/lists/services/ServicesList.vue'
       font-size: 20px;
       line-height: 1.5;
     }
+  }
+
+  &__modules {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+  }
+}
+
+.module {
+  &-often {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
   }
 }
 </style>

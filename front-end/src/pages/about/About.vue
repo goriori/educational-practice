@@ -21,6 +21,7 @@
           являются основой нашей деятельности.
         </p>
       </div>
+      <hr />
       <div class="page__advantages">
         <div class="page__advantages-title">
           <h3>
@@ -57,6 +58,7 @@
           </ul>
         </div>
       </div>
+      <hr />
       <div class="page__contactus">
         <h3 class="page__contactus-title">Свяжитесь с нами</h3>
         <div class="page__contactus-description">
@@ -65,6 +67,21 @@
             готова принять ваши заказы и ответить на все ваши вопросы. Мы всегда
             готовы помочь вам восстановить свою мебель к прежней свежести и
             чистоте.
+          </p>
+          <p>Контактная информация Gleaming Clean:</p>
+          <ul>
+            <li>Телефон: +1234567890</li>
+            <li>Электронная почта: info@gleamingclean.com</li>
+            <li>
+              Социальные сети: Мы активны в Instagram и Facebook, следите за
+              нашими последними новостями и акциями!
+            </li>
+          </ul>
+          <hr>
+          <p>
+            Не стесняйтесь обращаться к нам, и мы обеспечим профессиональный
+            уровень чистки для ваших ценных предметов мебели и текстиля.
+            Gleaming Clean - ваш надежный выбор для безупречной чистки!
           </p>
         </div>
       </div>
@@ -75,17 +92,89 @@
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
 
+$subtitle: 26px;
+
+hr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2px;
+  background: #000;
+}
+
 .page {
   display: flex;
   justify-content: center;
   align-items: center;
   background: $primary;
+  line-height: normal;
+  line-height: 2;
   color: #000;
 
-  &__content {
+  &__container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    gap: $gap;
+  }
+
+  &__title {
+    font-size: 40px;
+  }
+
+  &__subtitle {
+    font-size: $subtitle;
+  }
+
+  &__description {
+    font-size: 20px;
+  }
+
+  &__advantages {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    &-title {
+      font-size: 26px;
+    }
+
+    &-description {
+      font-size: 20px;
+    }
+
+    &-list {
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $gap;
+      }
+    }
+  }
+
+  &__contactus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $gap;
+
+    &-title {
+      font-size: $subtitle;
+    }
+
+    &-description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: $gap;
+      p:nth-child(5) {
+        max-width: 900px;
+        text-align: center;
+        font-weight: bold;
+        margin:0 auto;
+      }
+    }
   }
 }
 </style>

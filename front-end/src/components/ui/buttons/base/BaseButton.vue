@@ -123,38 +123,14 @@ const props = defineProps({
     background: $primary;
     border-color: $primary;
     color: #fff;
-
     &:hover {
-      path {
-        fill: $secondary;
-      }
-
       color: $secondary;
-      border-color: $secondary;
     }
   }
 
   &-secondary {
     color: $white;
     background: $secondary;
-  }
-
-  &-balance-primary {
-    background: $primary;
-    color: $white;
-
-    &:hover {
-      background: $secondary;
-    }
-  }
-
-  &-withdrawal-primary {
-    background: $primary;
-    color: $white;
-
-    &:hover {
-      background: $secondary;
-    }
   }
 
   // Shadow

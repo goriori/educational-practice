@@ -13,4 +13,11 @@ window.SLIDERS = {
     '/images/sliders/main/4.jpg',
     '/images/sliders/main/5.webp',
   ],
+  SERVICES: [
+    '/images/sliders/main/1.jpg',
+    '/images/sliders/main/2.webp',
+    '/images/sliders/main/3.jpg',
+    '/images/sliders/main/4.jpg',
+    '/images/sliders/main/5.webp',
+  ],
 }

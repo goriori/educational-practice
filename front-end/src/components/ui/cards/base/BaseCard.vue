@@ -16,26 +16,29 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    :class="[
-      'card',
-      {
-        'card-rounded': props.rounded,
-        'card-outline': props.outline,
-      },
-    ]"
-  >
-    <div class="card__image">
-      <img :src="image" alt="" />
-    </div>
-    <div class="card__title">
-      <slot name="title" />
-    </div>
-    <div class="card__content">
-      <slot name="content" />
-    </div>
-    <div class="card__actions">
-      <slot name="actions" />
+  <div>
+    <slot name="module" />
+    <div
+      :class="[
+        'card',
+        {
+          'card-rounded': props.rounded,
+          'card-outline': props.outline,
+        },
+      ]"
+    >
+      <div class="card__image">
+        <img :src="image" alt="" />
+      </div>
+      <div class="card__title">
+        <slot name="title" />
+      </div>
+      <div class="card__content">
+        <slot name="content" />
+      </div>
+      <div class="card__actions">
+        <slot name="actions" />
+      </div>
     </div>
   </div>
 </template>
@@ -85,6 +88,7 @@ $gap: 30px;
   &__content {
     font-size: 16px;
     line-height: normal;
+    min-height: 100px;
     max-height: 100px;
     overflow: hidden;
     text-overflow: ellipsis;

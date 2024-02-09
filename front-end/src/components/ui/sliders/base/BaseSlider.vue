@@ -7,8 +7,11 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  size: {
+    type: String,
+    default: 'default',
+  },
 })
-
 </script>
 
 <template>
@@ -20,7 +23,17 @@ const props = defineProps({
     }"
   >
     <swiper-slide v-for="image in images" :key="image">
-      <img :src="image" alt="" />
+      <img
+        :src="image"
+        alt=""
+        :class="[
+          'slider',
+          {
+            'slider-default':size === 'default',
+            'slider-small': size === 'small',
+          },
+        ]"
+      />
     </swiper-slide>
   </swiper-container>
 </template>
@@ -30,7 +43,15 @@ img {
   border-radius: 20px;
   width: 100%;
   height: 100%;
-  min-height: 550px;
   object-fit: cover;
+}
+
+.slider {
+  &-default {
+    min-height: 550px;
+  }
+  &-small {
+    max-height: 350px;
+  }
 }
 </style>

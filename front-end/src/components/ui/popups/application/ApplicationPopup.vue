@@ -2,10 +2,20 @@
 import BasePopup from '@/components/ui/popups/base/BasePopup.vue'
 import BaseInput from '@/components/ui/inputs/base/BaseInput.vue'
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
+import { ref } from 'vue'
 
-const emits = defineEmits(['close'])
-
+const emits = defineEmits(['close', 'sendApplicationForm'])
+const applicationForm = ref({
+  firstname: '',
+  surname: '',
+  lastname: '',
+  phone: '',
+})
 const sendApplication = () => {
+
+  emits('sendApplicationForm', applicationForm.value)
+}
+const cancelApplication = () => {
   emits('close')
 }
 </script>
@@ -19,17 +29,42 @@ const sendApplication = () => {
         </div>
         <div class="application-form">
           <form @submit.prevent>
-            <BaseInput type="text" placeholder="Ваше имя" />
-            <BaseInput type="text" placeholder="Ваша фамилия" />
-            <BaseInput type="text" placeholder="Ваше отчество" />
-            <BaseInput type="phone" placeholder="Номер вашего телефона" />
-            <BaseButton
-              color="secondary"
-              rounded="small"
-              @click="sendApplication"
-            >
-              <p>Отправить заявку</p>
-            </BaseButton>
+            <BaseInput
+              type="text"
+              placeholder="Ваше имя"
+              v-model="applicationForm.firstname"
+            />
+            <BaseInput
+              type="text"
+              placeholder="Ваша фамилия"
+              v-model="applicationForm.surname"
+            />
+            <BaseInput
+              type="text"
+              placeholder="Ваше отчество"
+              v-model="applicationForm.lastname"
+            />
+            <BaseInput
+              type="phone"
+              placeholder="Номер вашего телефона"
+              v-model="applicationForm.phone"
+            />
+            <div class="application-form-actions">
+              <BaseButton
+                color="secondary"
+                rounded="small"
+                @click="sendApplication"
+              >
+                <p>Отправить заявку</p>
+              </BaseButton>
+              <BaseButton
+                color="primary"
+                rounded="small"
+                @click="cancelApplication"
+              >
+                <p>Отменить</p>
+              </BaseButton>
+            </div>
           </form>
         </div>
       </div>
@@ -62,6 +97,13 @@ const sendApplication = () => {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: $gap;
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: $gap;
     }
   }

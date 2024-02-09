@@ -3,7 +3,15 @@ import MainSlider from '@/components/ui/sliders/main/MainSlider.vue'
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { useRouter } from 'vue-router'
 
+
+const props = defineProps({
+  states: {
+    type: Array,
+    default: [],
+  },
+})
 const router = useRouter()
+
 </script>
 <template>
   <div class="page">

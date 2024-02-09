@@ -1,22 +1,33 @@
 <script setup>
 import SearchButton from '@/components/ui/buttons/search/SearchButton.vue'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useObjectsStore } from '@/store/objects/objectsStore.js'
 
+const objectsStore = useObjectsStore()
 const isActive = ref(false)
 const close = ref(false)
+const searchValue = ref('')
 const activate = () => {
   close.value = !!isActive.value
   setTimeout(() => (isActive.value = !isActive.value), 100)
 }
+const onSearchObjects = () => {
+  objectsStore.searchObjects(searchValue.value)
+}
+watchEffect(() => {
+  if (!isActive.value) searchValue.value = ''
+  onSearchObjects(searchValue)
+})
 </script>
 
 <template>
   <div class="search">
     <input
+      v-if="isActive"
+      :class="{ 'input-active': !close, 'input-close': close }"
+      v-model="searchValue"
       type="text"
       placeholder="Поиск"
-      :class="{ 'input-active': !close, 'input-close': close }"
-      v-if="isActive"
     />
     <SearchButton @click="activate" />
   </div>

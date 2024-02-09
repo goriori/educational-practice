@@ -1,19 +1,23 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import VLoader from '@/components/VLoader.vue'
-import { useStateStore } from '@/store/stateStore'
+import { useStateStore } from '@/store/state/stateStore.js'
+import { stores } from '@/store/index.js'
+import { onMounted } from 'vue'
 import Header from './components/globals/header/Header.vue'
 import Footer from './components/globals/footer/Footer.vue'
 import VLoadPage from '@/components/VLoadPage.vue'
 
 const route = useRoute()
 const stateStore = useStateStore()
+onMounted(async () => {
+  stores.map(async (store) => await store().init())
+})
 </script>
 
 <template>
   <main class="main">
-    <Transition>
-      <VLoadPage v-if="false" />
+    <Transition name="fade">
+      <VLoadPage v-if="stateStore.isLoading" />
     </Transition>
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
@@ -26,7 +30,6 @@ const stateStore = useStateStore()
         <Footer />
       </template>
     </RouterView>
-    <VLoader v-if="stateStore.isLoading" />
   </main>
 </template>
 
