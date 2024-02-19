@@ -7,6 +7,7 @@ import ApplicationModule from '@/components/modules/application/ApplicationModul
 const router = useRouter()
 const route = useRoute()
 const pages = router.getRoutes()
+console.log(pages)
 const targetPage = computed(() => route.name)
 const websiteTitle = window.WEBSITE_NAME
 </script>
@@ -20,17 +21,18 @@ const websiteTitle = window.WEBSITE_NAME
 
       <div class="header__lead">
         <div class="header__nav">
-          <a
-            href="#"
-            v-for="page in pages"
-            :key="page.name"
-            :class="[
-              'header__nav-item',
-              { 'nav-active': page.name === targetPage },
-            ]"
-            @click="router.push(page.path)"
-            >{{ page.props.default?.title }}</a
-          >
+          <div v-for="page in pages" :key="page.name">
+            <a
+              href="#"
+              v-if="page.props.default?.visibility"
+              :class="[
+                'header__nav-item',
+                { 'nav-active': page.name === targetPage },
+              ]"
+              @click="router.push(page.path)"
+              >{{ page.props.default?.title }}</a
+            >
+          </div>
         </div>
         <ApplicationModule />
       </div>

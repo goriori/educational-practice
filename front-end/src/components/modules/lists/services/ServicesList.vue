@@ -33,7 +33,7 @@ const onTarget = (object) => {
         </template>
         <template #actions>
           <ApplicationModule />
-          <div>{{ item.price }}Р</div>
+          <div class="price">{{ item.price }}Р</div>
         </template>
       </BaseCard>
     </div>
@@ -75,5 +75,12 @@ const onTarget = (object) => {
       grid-template-columns: repeat(1, 1fr);
     }
   }
+}
+
+.price {
+  border-radius: 16px;
+  padding: 15px 20px;
+  background: #4a52e5;
+  color: $white;
 }
 </style>

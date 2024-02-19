@@ -11,6 +11,7 @@
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables';
+
 .loader {
   position: fixed;
   top: 0;

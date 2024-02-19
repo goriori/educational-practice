@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from '../user/user.entity';
 import { Category } from '../category/category.entity';
 import { Objects } from '../objects/objects.entity';
+import { Application } from '../application/application.entity';
 
 export const databaseProviders = [
   {
@@ -15,7 +16,7 @@ export const databaseProviders = [
         password: '',
         database: 'gleaming_сlean',
       });
-      sequelize.addModels([User, Category, Objects]);
+      sequelize.addModels([User, Category, Objects, Application]);
       await sequelize.sync();
       return sequelize;
     },

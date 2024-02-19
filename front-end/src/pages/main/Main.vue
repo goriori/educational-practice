@@ -11,7 +11,6 @@ const props = defineProps({
   },
 })
 const router = useRouter()
-
 </script>
 <template>
   <div class="page">

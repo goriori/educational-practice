@@ -21,6 +21,12 @@
           являются основой нашей деятельности.
         </p>
       </div>
+      <div class="page__map">
+        <img
+          src="https://images.unsplash.com/photo-1586449480558-33ae22ffc60d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+        />
+      </div>
       <hr />
       <div class="page__advantages">
         <div class="page__advantages-title">
@@ -60,6 +66,12 @@
       </div>
       <hr />
       <div class="page__contactus">
+        <div class="page__contactus-preview">
+          <img
+            src="https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt=""
+          />
+        </div>
         <h3 class="page__contactus-title">Свяжитесь с нами</h3>
         <div class="page__contactus-description">
           <p>
@@ -77,7 +89,7 @@
               нашими последними новостями и акциями!
             </li>
           </ul>
-          <hr>
+          <hr />
           <p>
             Не стесняйтесь обращаться к нам, и мы обеспечим профессиональный
             уровень чистки для ваших ценных предметов мебели и текстиля.
@@ -130,6 +142,17 @@ hr {
     font-size: 20px;
   }
 
+  &__map {
+    width: 100%;
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+  }
+
   &__advantages {
     display: flex;
     flex-direction: column;
@@ -159,6 +182,17 @@ hr {
     justify-content: center;
     gap: $gap;
 
+    &-preview {
+      width: 100%;
+
+      img {
+        width: 100%;
+        border-radius: 16px;
+        max-height: 300px;
+        object-fit: cover;
+      }
+    }
+
     &-title {
       font-size: $subtitle;
     }
@@ -168,11 +202,12 @@ hr {
       flex-direction: column;
       justify-content: center;
       gap: $gap;
+
       p:nth-child(5) {
         max-width: 900px;
         text-align: center;
         font-weight: bold;
-        margin:0 auto;
+        margin: 0 auto;
       }
     }
   }

@@ -5,18 +5,34 @@ import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { ref } from 'vue'
 
 const emits = defineEmits(['close', 'sendApplicationForm'])
+const props = defineProps({
+  status: {
+    type: String,
+    default: 'none',
+  },
+})
 const applicationForm = ref({
   firstname: '',
   surname: '',
   lastname: '',
   phone: '',
 })
-const sendApplication = () => {
 
+const sendApplication = () => {
   emits('sendApplicationForm', applicationForm.value)
+  clearForm()
 }
+
 const cancelApplication = () => {
   emits('close')
+}
+const clearForm = () => {
+  applicationForm.value = {
+    firstname: '',
+    surname: '',
+    lastname: '',
+    phone: '',
+  }
 }
 </script>
 
@@ -24,8 +40,18 @@ const cancelApplication = () => {
   <BasePopup>
     <template #window>
       <div class="application">
+        <div class="application-message message" v-if="status !== 'none'">
+          <div class="message-error" v-if="status === 'error'">
+            Произошла ошибка, попробуйте еще раз позднее!
+          </div>
+        </div>
         <div class="application-title">
           <h2>Отправить заявку</h2>
+          <p>
+            В течении некоторого времени ваша заявка будет обрабатываться!
+            Пожалуйста ожидайте, в скором времени с вами свяжуться наши
+            операторы для уточнения информации и составления заказа
+          </p>
         </div>
         <div class="application-form">
           <form @submit.prevent>
@@ -89,6 +115,14 @@ const cancelApplication = () => {
   padding: 50px;
   color: #000;
 
+  &-title {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    line-height: 120%;
+  }
+
   &-form {
     width: 100%;
 
@@ -106,6 +140,15 @@ const cancelApplication = () => {
       justify-content: center;
       gap: $gap;
     }
+  }
+}
+
+.message {
+  &-error {
+    padding: 20px;
+    background: red;
+    color: white;
+    border-radius: 12px;
   }
 }
 </style>

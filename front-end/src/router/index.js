@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const Main = () => import('@/pages/main/Main.vue')
 const Services = () => import('@/pages/services/Services.vue')
 const About = () => import('@/pages/about/About.vue')
+const Admin = () => import('@/pages/admin/Admin.vue')
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -11,6 +12,7 @@ const router = createRouter({
       name: 'home',
       props: {
         title: 'Главная',
+        visibility: true,
       },
       component: Main,
     },
@@ -19,6 +21,7 @@ const router = createRouter({
       name: 'services',
       props: {
         title: 'Услуги',
+        visibility: true,
       },
       component: Services,
     },
@@ -27,8 +30,18 @@ const router = createRouter({
       name: 'about',
       props: {
         title: 'О нас',
+        visibility: true,
       },
       component: About,
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      props: {
+        title: 'Панель администратора',
+        visibility: false,
+      },
+      component: Admin,
     },
   ],
 })
