@@ -1,4 +1,4 @@
-import { Table, Column, Model, } from 'sequelize-typescript';
+import { Table, Column, Model } from 'sequelize-typescript';
 
 @Table
 export class Objects extends Model {
@@ -13,4 +13,7 @@ export class Objects extends Model {
 
   @Column
   price: number;
+
+  @Column
+  bonus: number;
 }

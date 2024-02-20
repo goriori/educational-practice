@@ -13,4 +13,7 @@ export class User extends Model {
 
   @Column
   address: string;
+
+  @Column
+  bonusBalance: number;
 }

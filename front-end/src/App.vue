@@ -6,6 +6,7 @@ import { onMounted } from 'vue'
 import Header from './components/globals/header/Header.vue'
 import Footer from './components/globals/footer/Footer.vue'
 import VLoadPage from '@/components/VLoadPage.vue'
+import GlobalPopups from "@/components/globals/popups/GlobalPopups.vue";
 
 const route = useRoute()
 const stateStore = useStateStore()
@@ -19,6 +20,7 @@ onMounted(async () => {
     <Transition name="fade">
       <VLoadPage v-if="stateStore.isLoading" />
     </Transition>
+    <GlobalPopups/>
     <RouterView v-slot="{ Component }">
       <template v-if="Component">
         <Header />

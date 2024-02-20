@@ -115,13 +115,6 @@ hr {
 }
 
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $primary;
-  line-height: normal;
-  line-height: 2;
-  color: #000;
 
   &__container {
     display: flex;

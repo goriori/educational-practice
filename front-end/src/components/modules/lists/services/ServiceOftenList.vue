@@ -62,7 +62,6 @@ const onTarget = (object) => {
     }
   }
 }
-
 .price {
   border-radius: 16px;
   padding: 15px 20px;

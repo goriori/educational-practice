@@ -55,12 +55,6 @@ const router = useRouter()
 }
 
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $primary;
-  color: #000;
-
   &__content {
     display: flex;
     align-items: center;

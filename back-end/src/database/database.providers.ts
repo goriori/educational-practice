@@ -17,7 +17,7 @@ export const databaseProviders = [
         database: 'gleaming_сlean',
       });
       sequelize.addModels([User, Category, Objects, Application]);
-      await sequelize.sync();
+      await sequelize.sync({ alter: true });
       return sequelize;
     },
   },

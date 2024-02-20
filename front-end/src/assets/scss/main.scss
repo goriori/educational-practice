@@ -18,5 +18,10 @@
 }
 
 .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $primary;
+  color: #000;
   flex: 1 1 auto;
 }

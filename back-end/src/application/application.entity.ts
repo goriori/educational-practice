@@ -13,4 +13,5 @@ export class Application extends Model {
 
   @Column
   phone: string;
+
 }

@@ -44,11 +44,7 @@ applicationStore.init()
 @import '@/assets/scss/variables';
 
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $primary;
-  color: #000;
+
 }
 
 .application {

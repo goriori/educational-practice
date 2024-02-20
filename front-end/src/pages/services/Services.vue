@@ -56,12 +56,6 @@ import ObjectPopupModule from '@/components/modules/popups/object/ObjectPopupMod
 }
 
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $primary;
-  color: #000;
-  padding: 50px;
 
   &__content {
     display: flex;
