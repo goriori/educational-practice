@@ -1,5 +1,23 @@
 <script setup>
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
+import { useSessionStore } from '@/store/session/sessionStore.js'
+import { useRouter } from 'vue-router'
+import { useApplicationStore } from '@/store/applications/applicationStore.js'
+import { onMounted } from 'vue'
+
+const sessionStore = useSessionStore()
+const applicationStore = useApplicationStore()
+const router = useRouter()
+const onLogout = () => {
+  router.push({ name: 'session' })
+  const routes = router.getRoutes()
+  routes[3].props.default.visibility = true
+  routes[4].props.default.visibility = false
+  setTimeout(sessionStore.logout, 200)
+}
+onMounted(async () => {
+  await applicationStore.getApplications()
+})
 </script>
 
 <template>
@@ -13,18 +31,29 @@ import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
               alt=""
             />
           </div>
-          <div class="account-head-name">full name</div>
+          <div class="account-head-name">
+            {{
+              sessionStore.session.name + ' ' + sessionStore.session.lastName
+            }}
+          </div>
         </div>
         <div class="account account-balance">
           <!--        <div class="account-balance-main">-->
           <!--          <p>Баланс: <span>100 Рублей</span></p>-->
           <!--        </div>-->
           <div class="account-balance-bonus">
-            <p>Бонусов: <span>10 баллов</span></p>
+            <p>
+              Бонусов:
+              <span
+                >{{ sessionStore.session.bonusBalance || '0' }} бонусов</span
+              >
+            </p>
           </div>
         </div>
         <div class="account-actions">
-          <BaseButton color="secondary" rounded="small">Выйти</BaseButton>
+          <BaseButton color="secondary" rounded="small" @click="onLogout"
+            >Выйти
+          </BaseButton>
         </div>
       </div>
       <div class="right">

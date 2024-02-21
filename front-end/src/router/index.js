@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useSessionStore } from '@/store/session/sessionStore.js'
 
 const Main = () => import('@/pages/main/Main.vue')
 const Services = () => import('@/pages/services/Services.vue')
@@ -66,6 +67,11 @@ const router = createRouter({
   ],
 })
 router.beforeEach((to, from, next) => {
-  next()
+  const sessionStore = useSessionStore()
+  if (!sessionStore.session && to.name === 'account') {
+    next({ name: 'session' })
+  } else {
+    next()
+  }
 })
 export default router

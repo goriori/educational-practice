@@ -2,6 +2,8 @@
 import BasePopup from '@/components/ui/popups/base/BasePopup.vue'
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import ErrorIcon from '@/components/ui/icons/ErrorIcon.vue'
+
+const emits = defineEmits(['close'])
 </script>
 
 <template>
@@ -11,8 +13,8 @@ import ErrorIcon from '@/components/ui/icons/ErrorIcon.vue'
         <div class="window-container">
           <div class="window-content">
             <ErrorIcon />
-            <h3>Поля заполнены не верно. Пожалуйста проверьте еще раз!</h3>
-            <BaseButton color="primary">
+            <h3>Поля заполнены не верно.<br/> Пожалуйста проверьте еще раз!</h3>
+            <BaseButton color="secondary" rounded="small" @click="emits('close')">
               <p>Закрыть</p>
             </BaseButton>
           </div>

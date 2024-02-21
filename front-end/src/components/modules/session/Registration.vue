@@ -1,17 +1,39 @@
 <script setup>
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { ref } from 'vue'
-import BaseInput from "@/components/ui/inputs/base/BaseInput.vue";
+import BaseInput from '@/components/ui/inputs/base/BaseInput.vue'
+import { useSessionStore } from '@/store/session/sessionStore.js'
+import { useRouter } from 'vue-router'
+import { useStateStore } from '@/store/state/stateStore.js'
 
 const emits = defineEmits(['toAuthorization'])
-
+const sessionStore = useSessionStore()
+const stateStore = useStateStore()
 const form = ref({
   name: '',
   lastName: '',
   phone: '',
   password: '',
 })
-const onSendForm = () => {}
+const clearForm = () => {
+  form.value = {
+    name: '',
+    lastName: '',
+    phone: '',
+    password: '',
+  }
+}
+const onSendForm = () => {
+  sessionStore
+    .registration(form.value)
+    .then(clearForm)
+    .then(() => emits('toAuthorization'))
+    .catch((e) => {
+      const status = e.response.status
+      if (status >= 500) stateStore.popupMessages.errorServer = true
+      else if (status >= 400) stateStore.popupMessages.errorValid = true
+    })
+}
 </script>
 
 <template>
@@ -32,7 +54,9 @@ const onSendForm = () => {}
       <label for="">Пароль</label>
       <BaseInput type="text" placeholder="Пароль" v-model="form.password" />
     </div>
-    <BaseButton color="secondary" rounded="small"> Войти</BaseButton>
+    <BaseButton color="secondary" rounded="small" @click="onSendForm">
+      Регистрация
+    </BaseButton>
     <p>
       У вас уже есть аккаунт?
       <span @click="emits('toAuthorization')">Войти</span>

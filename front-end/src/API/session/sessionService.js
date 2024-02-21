@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/utils/axios/axios'
 
 export default class SessionService {
-  static async authorization({ login, password }) {
+  static async authorization(formAuth) {
     try {
       const response = await axiosInstance({
         url: '/user/auth',
@@ -10,7 +10,7 @@ export default class SessionService {
           Accept: 'application/json',
         },
         method: 'POST',
-        data: { login, password },
+        data: {...formAuth},
       })
       return response.data
     } catch (e) {
@@ -18,16 +18,16 @@ export default class SessionService {
     }
   }
 
-  static async registration({ name, lastName, login, phone, password }) {
+  static async registration(formReg) {
     try {
       const response = await axiosInstance({
-        url: '/user/auth',
+        url: '/user/reg',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         method: 'POST',
-        data: { name, lastName, login, phone, password },
+        data: { ...formReg },
       })
       return response.data
     } catch (e) {

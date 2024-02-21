@@ -1,15 +1,41 @@
 <script setup>
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { ref } from 'vue'
-import BaseInput from "@/components/ui/inputs/base/BaseInput.vue";
+import BaseInput from '@/components/ui/inputs/base/BaseInput.vue'
+import { useSessionStore } from '@/store/session/sessionStore.js'
+import { useRouter } from 'vue-router'
+import { useStateStore } from '@/store/state/stateStore.js'
 
 const emits = defineEmits(['toRegistration'])
+const sessionStore = useSessionStore()
+const stateStore = useStateStore()
+const router = useRouter()
 const form = ref({
   phone: '',
   password: '',
 })
-const onSendForm = ()=> {
-
+const clearForm = () => {
+  form.value = {
+    phone: '',
+    password: '',
+  }
+}
+const routes = router.getRoutes()
+const onSendForm = () => {
+  sessionStore
+    .authorization(form.value)
+    .then(clearForm)
+    .then(() => {
+      const routes = router.getRoutes()
+      routes[3].props.default.visibility = false
+      routes[4].props.default.visibility = true
+    })
+    .then(() => router.push('/account'))
+    .catch((e) => {
+      const status = e.response.status
+      if (status >= 500) stateStore.popupMessages.errorServer = true
+      else if (status >= 400) stateStore.popupMessages.errorValid = true
+    })
 }
 </script>
 
@@ -23,7 +49,9 @@ const onSendForm = ()=> {
       <label for="">Пароль</label>
       <BaseInput type="text" placeholder="Логин" v-model="form.password" />
     </div>
-    <BaseButton color="secondary" rounded="small" @click="onSendForm"> Войти</BaseButton>
+    <BaseButton color="secondary" rounded="small" @click="onSendForm">
+      Войти
+    </BaseButton>
     <p>
       У вас нет аккаунта?
       <span @click="emits('toRegistration')">Зарегестрироваться</span>

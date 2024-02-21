@@ -11,6 +11,7 @@ const props = defineProps({
     default: 'none',
   },
 })
+const visibilityText = ref(false)
 const applicationForm = ref({
   firstname: '',
   surname: '',
@@ -47,11 +48,13 @@ const clearForm = () => {
         </div>
         <div class="application-title">
           <h2>Отправить заявку</h2>
-          <p>
-            В течении некоторого времени ваша заявка будет обрабатываться!
-            Пожалуйста ожидайте, в скором времени с вами свяжуться наши
-            операторы для уточнения информации и составления заказа
-          </p>
+          <Transition name="fade">
+            <p v-if="visibilityText">
+              В течении некоторого времени ваша заявка будет обрабатываться!
+              Пожалуйста ожидайте, в скором времени с вами свяжуться наши
+              операторы для уточнения информации и составления заказа
+            </p>
+          </Transition>
         </div>
         <div class="application-form">
           <form @submit.prevent>

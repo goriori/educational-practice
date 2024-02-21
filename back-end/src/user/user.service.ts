@@ -1,6 +1,10 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { User } from './user.entity';
-import { createUserDto, updateUserDto } from './user.dto';
+import {
+  authUserDto,
+  createUserDto,
+  updateUserDto,
+} from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -31,5 +35,14 @@ export class UserService {
 
   async deleteOne(id: number | string): Promise<number> {
     return this.userRepository.destroy({ where: { id } });
+  }
+
+  async auth(authUserDto: authUserDto) {
+    const { phone, password } = authUserDto;
+    const user = await this.userRepository.findOne({
+      where: { phone, password },
+    });
+    if (!user) return false;
+    return user;
   }
 }

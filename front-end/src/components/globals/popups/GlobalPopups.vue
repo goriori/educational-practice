@@ -9,10 +9,16 @@ const stateStore = useStateStore()
 <template>
   <Teleport to="body">
     <Transition name="fade">
-      <PopupErrorServer v-if="stateStore.popupMessages.errorServer" />
+      <PopupErrorServer
+        v-if="stateStore.popupMessages.errorServer"
+        @close="stateStore.popupMessages.errorServer = false"
+      />
     </Transition>
     <Transition name="fade">
-      <PopupErrorValid v-if="stateStore.popupMessages.errorValid" />
+      <PopupErrorValid
+        v-if="stateStore.popupMessages.errorValid"
+        @close="stateStore.popupMessages.errorValid = false"
+      />
     </Transition>
   </Teleport>
 </template>

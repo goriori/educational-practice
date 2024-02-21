@@ -1,15 +1,23 @@
 <script setup>
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { useRouter, useRoute } from 'vue-router'
-import { computed, ref, toRef } from 'vue'
+import { computed, onBeforeMount, onMounted, ref, toRef } from 'vue'
 import ApplicationModule from '@/components/modules/application/ApplicationModule.vue'
+import { useSessionStore } from '@/store/session/sessionStore.js'
+import { useSession } from '@/utils/useSession.js'
 
 const router = useRouter()
 const route = useRoute()
 const pages = router.getRoutes()
-console.log(pages)
+const sessionStore = useSessionStore()
 const targetPage = computed(() => route.name)
 const websiteTitle = window.WEBSITE_NAME
+
+const toPage = async (path) => {
+  await router.push(path)
+}
+
+onBeforeMount(() => useSession())
 </script>
 
 <template>
@@ -29,7 +37,7 @@ const websiteTitle = window.WEBSITE_NAME
                 'header__nav-item',
                 { 'nav-active': page.name === targetPage },
               ]"
-              @click="router.push(page.path)"
+              @click="toPage(page.path)"
               >{{ page.props.default?.title }}</a
             >
           </div>

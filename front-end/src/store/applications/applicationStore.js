@@ -19,5 +19,6 @@ export const useApplicationStore = defineStore('applicationStore', () => {
     applications,
     init,
     createApplication,
+    getApplications
   }
 })

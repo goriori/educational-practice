@@ -12,7 +12,8 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { UserService } from './user.service';
-import { createUserDto, updateUserDto } from './user.dto';
+import { authUserDto, createUserDto, updateUserDto } from './user.dto';
+import { User } from './user';
 
 @Controller('user')
 export class UserController {
@@ -31,8 +32,15 @@ export class UserController {
     return res.status(HttpStatus.OK).json(foundUser);
   }
 
-  @Post()
+  @Post('/reg')
   async createOne(@Body() createUserDto: createUserDto, @Res() res: Response) {
+    if (
+      !createUserDto.name ||
+      !createUserDto.lastName ||
+      !createUserDto.password ||
+      !createUserDto.phone
+    )
+      res.status(HttpStatus.BAD_REQUEST).json('missing parameter');
     await this.userService.createOne(createUserDto);
     return res.status(HttpStatus.CREATED).json('success created user');
   }
@@ -55,5 +63,15 @@ export class UserController {
     return result
       ? res.status(HttpStatus.OK).json(`user success deleted ${result}`)
       : res.status(HttpStatus.NOT_FOUND).json('Not found user');
+  }
+
+  @Post('/auth')
+  async auth(@Body() authUserDto: authUserDto, @Res() res: Response) {
+    if (!authUserDto.phone || !authUserDto.password)
+      res.status(HttpStatus.BAD_REQUEST).json('missing parameter');
+    const user = await this.userService.auth(authUserDto);
+    if (!user)
+      res.status(HttpStatus.UNAUTHORIZED).json('Not correct phone or password');
+    return res.status(HttpStatus.OK).json(user);
   }
 }

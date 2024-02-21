@@ -2,6 +2,7 @@
 import BasePopup from '@/components/ui/popups/base/BasePopup.vue'
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import ErrorIcon from '@/components/ui/icons/ErrorIcon.vue'
+const emits = defineEmits(['close'])
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import ErrorIcon from '@/components/ui/icons/ErrorIcon.vue'
           <div class="window-content">
             <ErrorIcon />
             <h3>Произошла ошибка сервера, пожалуйста попробуйте позже</h3>
-            <BaseButton color="primary">
+            <BaseButton color="secondary" rounded="small" @click="emits('close')">
               <p>Закрыть</p>
             </BaseButton>
           </div>
