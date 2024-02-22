@@ -1,4 +1,4 @@
-window.API_URL = 'http://localhost:3000'
+window.API_URL = 'http://9cbc65a1e06b.vps.myjino.ru'
 window.WEBSITE_NAME = 'Gleaming Clean'
 
 window.BACKGROUNDS = {

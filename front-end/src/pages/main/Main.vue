@@ -3,7 +3,6 @@ import MainSlider from '@/components/ui/sliders/main/MainSlider.vue'
 import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { useRouter } from 'vue-router'
 
-
 const props = defineProps({
   states: {
     type: Array,
@@ -48,6 +47,10 @@ const router = useRouter()
 
 #btn-services {
   max-width: 230px;
+  @media (max-width: $md4 + px) {
+    max-width: 150px;
+  }
+
 
   p {
     color: $white;
@@ -79,12 +82,21 @@ const router = useRouter()
       @media (max-width: $md4 + px) {
         font-size: 50px;
       }
+      @media (max-width: $md5 + px) {
+        font-size: 30px;
+      }
     }
 
     p {
       color: #767877;
       font-size: 20px;
       line-height: 1.5;
+      @media (max-width: $md4 + px) {
+        font-size: 15px;
+      }
+      @media (max-width: $md5 + px) {
+        font-size: 10px;
+      }
     }
   }
 

@@ -1,4 +1,5 @@
-import { Table, Column, Model } from 'sequelize-typescript';
+import { Table, Column, Model, BelongsTo } from 'sequelize-typescript';
+import { Category } from '../category/category.entity';
 
 @Table
 export class Objects extends Model {
@@ -16,4 +17,7 @@ export class Objects extends Model {
 
   @Column
   bonus: number;
+
+  @BelongsTo(() => Category, 'categoryId')
+  category: number;
 }

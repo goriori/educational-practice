@@ -44,7 +44,9 @@ const activeCategory = (category) => {
   display: flex;
   justify-content: center;
   gap: $gap;
-
+  @media (max-width: $md4 + px) {
+    display: none;
+  }
   &-categories {
     display: flex;
     justify-content: center;
@@ -54,6 +56,10 @@ const activeCategory = (category) => {
     background: #fff;
     min-width: 200px;
     border-radius: $border-radius;
+    @media (max-width: $md3 + px) {
+      gap: 20px;
+    }
+
   }
 
   &-item {
@@ -63,6 +69,15 @@ const activeCategory = (category) => {
     border-radius: $border-radius;
     padding: 15px 20px;
     background: $primary;
+    @media (max-width: $md3 + px) {
+      font-size: 15px;
+    }
+    @media (max-width: $md4 + px) {
+      font-size: 12px;
+    }
+    @media (max-width: $md5 + px) {
+      font-size: 10px;
+    }
 
     &.filter-active {
       color: $white;

@@ -48,6 +48,8 @@ const onSendApplication = (applicationForm) => {
 </template>
 
 <style scoped lang="scss">
+
+
 .application__module {
 }
 </style>

@@ -45,6 +45,12 @@ watchEffect(() => {
     padding: 20px;
     animation-delay: 0.2s;
     border-radius: $border-radius;
+    @media (max-width: $md3 + px) {
+      padding: 15px;
+    }
+    @media (max-width: $md4 + px) {
+      padding: 10px;
+    }
   }
 
   //.input-active {

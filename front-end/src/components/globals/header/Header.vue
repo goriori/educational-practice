@@ -1,18 +1,24 @@
 <script setup>
-import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 import { useRouter, useRoute } from 'vue-router'
 import { computed, onBeforeMount, onMounted, ref, toRef } from 'vue'
 import ApplicationModule from '@/components/modules/application/ApplicationModule.vue'
 import { useSessionStore } from '@/store/session/sessionStore.js'
 import { useSession } from '@/utils/useSession.js'
+import BasketButton from '@/components/ui/buttons/basket/BasketButton.vue'
+import { useStateStore } from '@/store/state/stateStore.js'
 
 const router = useRouter()
 const route = useRoute()
 const pages = router.getRoutes()
+
 const sessionStore = useSessionStore()
+const stateStore = useStateStore()
 const targetPage = computed(() => route.name)
 const websiteTitle = window.WEBSITE_NAME
 
+const openBasket = () => {
+  stateStore.popupModules.basket.visibility = true
+}
 const toPage = async (path) => {
   await router.push(path)
 }
@@ -43,6 +49,7 @@ onBeforeMount(() => useSession())
           </div>
         </div>
         <ApplicationModule />
+        <BasketButton @click="openBasket" />
       </div>
     </div>
   </header>
@@ -78,6 +85,12 @@ onBeforeMount(() => useSession())
   &__title {
     color: #222326;
     font-size: 32px;
+    @media (max-width: $md4 + px) {
+      font-size: 20px;
+    }
+    @media (max-width: $md5 + px) {
+      font-size: 15px;
+    }
   }
 
   &__lead {

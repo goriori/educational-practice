@@ -5,8 +5,14 @@ import ServiceSearch from '@/components/modules/lists/modules/search/ServiceSear
 import ApplicationModule from '@/components/modules/application/ApplicationModule.vue'
 import { useObjectsStore } from '@/store/objects/objectsStore.js'
 import ObjectPopupModule from '@/components/modules/popups/object/ObjectPopupModule.vue'
+import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
+import { useBasketStore } from '@/store/basket/basketStore.js'
 
 const objectsStore = useObjectsStore()
+const basketStore = useBasketStore()
+const onAddToBasket = (object) => {
+  basketStore.addToBasket(object)
+}
 const onTarget = (object) => {
   objectsStore.targetObject.value = object
 }
@@ -32,7 +38,12 @@ const onTarget = (object) => {
           {{ item.description }}
         </template>
         <template #actions>
-          <ApplicationModule />
+          <BaseButton
+            color="secondary"
+            rounded="small"
+            @click="onAddToBasket(item)"
+            >В корзину</BaseButton
+          >
           <div class="price">{{ item.price }}Р</div>
         </template>
       </BaseCard>
@@ -82,5 +93,9 @@ const onTarget = (object) => {
   padding: 15px 20px;
   background: #4a52e5;
   color: $white;
+  @media (max-width: $md2 + px) {
+    font-size: 16px;
+  }
+
 }
 </style>

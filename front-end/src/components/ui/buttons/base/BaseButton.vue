@@ -84,7 +84,18 @@ const props = defineProps({
     font-size: 18px;
     padding: 10px 16px;
   }
-
+  @media (max-width: $md3 + px) {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+  @media (max-width: $md4 + px) {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+  @media (max-width: $md5 + px) {
+    font-size: 10px;
+    padding: 10px;
+  }
   // Size
   &-small {
     min-height: 49px;
@@ -123,6 +134,7 @@ const props = defineProps({
     background: $primary;
     border-color: $primary;
     color: #fff;
+
     &:hover {
       color: $secondary;
     }

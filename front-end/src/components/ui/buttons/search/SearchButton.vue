@@ -23,8 +23,18 @@ import BaseButton from '@/components/ui/buttons/base/BaseButton.vue'
 </template>
 
 <style scoped lang="scss">
+@import '@/assets/scss/variables';
+
 svg {
   max-width: 40px;
   max-height: 40px;
+  @media (max-width: $md3 + px) {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  @media (max-width: $md4 + px) {
+    max-width: 20px;
+    max-height: 20px;
+  }
 }
 </style>

@@ -67,5 +67,8 @@ const onTarget = (object) => {
   padding: 15px 20px;
   background: #e7352f;
   color: $white;
+  @media (max-width: $md2 + px) {
+    font-size: 16px;
+  }
 }
 </style>

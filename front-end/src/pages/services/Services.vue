@@ -56,12 +56,17 @@ import ObjectPopupModule from '@/components/modules/popups/object/ObjectPopupMod
 }
 
 .page {
+  padding: 10px 0;
 
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 50px;
+    @media (max-width: $md4 + px) {
+      gap: 20px;
+    }
+
   }
 
   &__title {
@@ -77,12 +82,21 @@ import ObjectPopupModule from '@/components/modules/popups/object/ObjectPopupMod
       @media (max-width: $md4 + px) {
         font-size: 50px;
       }
+      @media (max-width: $md5 + px) {
+        font-size: 30px;
+      }
     }
 
     p {
       color: #767877;
       font-size: 20px;
       line-height: 1.5;
+      @media (max-width: $md4 + px) {
+        font-size: 15px;
+      }
+      @media (max-width: $md5 + px) {
+        font-size: 10px;
+      }
     }
   }
 
