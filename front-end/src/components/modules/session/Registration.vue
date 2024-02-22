@@ -52,7 +52,7 @@ const onSendForm = () => {
     </div>
     <div class="form-field">
       <label for="">Пароль</label>
-      <BaseInput type="text" placeholder="Пароль" v-model="form.password" />
+      <BaseInput type="password" placeholder="Пароль" v-model="form.password" />
     </div>
     <BaseButton color="secondary" rounded="small" @click="onSendForm">
       Регистрация

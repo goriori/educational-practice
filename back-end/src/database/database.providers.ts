@@ -13,7 +13,7 @@ export const databaseProviders = [
         host: 'localhost',
         port: 3306,
         username: 'root',
-        password: '',
+        password: 'root',
         database: 'gleaming_сlean',
       });
       sequelize.addModels([User, Category, Objects, Application]);

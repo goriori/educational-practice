@@ -39,8 +39,9 @@ export class UserController {
       !createUserDto.lastName ||
       !createUserDto.password ||
       !createUserDto.phone
-    )
-      res.status(HttpStatus.BAD_REQUEST).json('missing parameter');
+    ) {
+      return res.status(HttpStatus.BAD_REQUEST).json('missing parameter');
+    }
     await this.userService.createOne(createUserDto);
     return res.status(HttpStatus.CREATED).json('success created user');
   }
@@ -67,11 +68,15 @@ export class UserController {
 
   @Post('/auth')
   async auth(@Body() authUserDto: authUserDto, @Res() res: Response) {
-    if (!authUserDto.phone || !authUserDto.password)
-      res.status(HttpStatus.BAD_REQUEST).json('missing parameter');
+    if (!authUserDto.phone || !authUserDto.password) {
+      return res.status(HttpStatus.BAD_REQUEST).json('missing parameter');
+    }
     const user = await this.userService.auth(authUserDto);
-    if (!user)
-      res.status(HttpStatus.UNAUTHORIZED).json('Not correct phone or password');
+    if (!user) {
+      return res
+        .status(HttpStatus.UNAUTHORIZED)
+        .json('Not correct phone or password');
+    }
     return res.status(HttpStatus.OK).json(user);
   }
 }

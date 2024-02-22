@@ -26,7 +26,7 @@ export const useObjectsStore = defineStore('objectsStore', () => {
     ]
   }
   const init = async () => {
-    getObjects().then(sortCharObject)
+    getObjects()
   }
   return {
     objects,
